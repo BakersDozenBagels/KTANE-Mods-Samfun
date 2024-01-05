@@ -33,6 +33,9 @@ static class ReflectedTypes
 	public static MethodInfo SkinnyWiresCalculateMethod;
 	public static FieldInfo SkinnyWiresCorrectRuleField;
 
+	public static Type TTKSType;
+	public static MethodInfo TTKSLeftHandler, TTKSRightHandler;
+
 	public static Type PortalRoomType;
 	public static MethodInfo RedLightsMethod;
 	public static FieldInfo RoomLightField;
@@ -137,6 +140,10 @@ static class ReflectedTypes
 			SkinnyWiresType?.GetMethod("CalculateCorrectWire", BindingFlags.Instance | BindingFlags.NonPublic);
 		SkinnyWiresCorrectRuleField =
 			SkinnyWiresType?.GetField("correctRule", BindingFlags.Instance | BindingFlags.NonPublic);
+
+		TTKSType = FindType("TurnKeyAdvancedModule", "TurnTheKeyMod");
+		TTKSLeftHandler = TTKSType?.GetMethod("OnLeftKeyTurn", BindingFlags.Instance | BindingFlags.NonPublic);
+		TTKSRightHandler = TTKSType?.GetMethod("OnRightKeyTurn", BindingFlags.Instance | BindingFlags.NonPublic);
 
 		PortalRoomType = FindType("PortalRoom", "HexiBombRoom");
 		RedLightsMethod = PortalRoomType?.GetMethod("RedLight", BindingFlags.Instance | BindingFlags.Public);
